@@ -20,3 +20,5 @@ src vue 源码目录
     server 服务端渲染相关
 test 测试目录
 types TS 类型声明
+
+> 记得回头看 vue git提交规范
