@@ -21,4 +21,6 @@ src vue 源码目录
 test 测试目录
 types TS 类型声明
 
+> 入口  /src/core/instance/index.js
+
 > 记得回头看 vue git提交规范
