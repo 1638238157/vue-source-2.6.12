@@ -24,3 +24,17 @@ types TS 类型声明
 > 入口  /src/core/instance/index.js
 
 > 记得回头看 vue git提交规范
+
+### Vue 的初始化过程（new Vue(options)）都做了什么？
+- 处理组件配置项
+    - 初始化根组件时进行了选项合并操作，将全局配置合并到根组件的局部配置上
+    - 初始化每个子组件时做了一些性能优化，将组件配置对象上的一些深层次属性放到 vm.$options选项中，以提高代码的执行效率
+- 初始化组件实例的关系属性，比如$parent、$children、$root、$refs等
+- 处理自定义事件
+- 调用beforeCreate钩子函数
+- 初始化组件的inject配置项，得到ret[key] = val 形式的配置对象，然后对该配置对象进行响应式处理，并代理每个key到vm实例上
+- 数据响应式，处理props、methods、data、computed、watch等选项
+- 解析组件配置项上的 provide 对象，将其挂载到 vm._provided 属性上
+- 调用created钩子函数
+- 如果发现配置上有el选项，则自动调用$mount方法，也就是说有了el选项，就不需要再手动调用$mount方法，反之，没提供el选项则必须调用$mount
+- 接下来进入挂载阶段
